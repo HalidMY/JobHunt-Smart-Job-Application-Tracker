@@ -123,6 +123,60 @@ body {
   text-decoration: underline;
 }
 
+/* =========================
+   SIDEBAR
+========================= */
+
+.dashboard-sidebar {
+  width: 260px;
+  background: linear-gradient(180deg, #1f3f8a, #2f6ecb);
+  color: white;
+  min-height: 100vh;
+  padding: 40px 25px;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar-logo {
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 50px;
+  letter-spacing: 1px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #e6ecff;
+  text-decoration: none;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+.nav-icon {
+  font-size: 18px;
+}
+
+/* Hover */
+.sidebar-nav a:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Active */
+.sidebar-nav a.active {
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+}
+
 
 /* =========================
    HERO SECTION
@@ -251,6 +305,112 @@ body {
   color: #166534;
 }
 
+/* =========================
+   DASHBOARD PAGE
+========================= */
+
+.dashboard-page {
+  display: flex;
+  min-height: 100vh;
+  background: #eef2f7;
+}
+
+.dashboard-body {
+  flex: 1;
+  padding: 50px 60px;
+  background: #ffffff;
+  position: relative;
+}
+
+.dashboard-body h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.dashboard-body p {
+  color: #475569;
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
+.floating-add-btn {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  transition: 0.3s ease;
+}
+
+.floating-add-btn svg {
+  font-size: 36px;
+  color: white;
+}
+
+.floating-add-btn:hover {
+  transform: scale(1.05) rotate(8deg);
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 25px 30px;
+  width: 220px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+}
+
+.card-body {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.icon-wrapper {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 15px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-wrapper svg {
+  font-size: 34px;
+  color: white;
+}
+
+/* Text */
+.card-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+
+.card-info span {
+  font-size: 38px;
+  font-weight: 800;
+  color: #0f172a;
+}
 
 /* =========================
    MOBILE RESPONSIVE
