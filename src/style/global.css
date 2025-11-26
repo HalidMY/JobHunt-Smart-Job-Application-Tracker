@@ -1,3 +1,23 @@
+/* =========================
+   RESET & BASE
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  background: #eef2f7;
+}
+
+
+/* =========================
+   AUTH PAGES (LOGIN / REGISTER)
+========================= */
+
 .auth-container {
   min-height: 100vh;
   display: flex;
@@ -9,16 +29,16 @@
 .auth-card {
   background: white;
   padding: 40px;
-  border-radius: 14px;
+  border-radius: 22px;
   width: 380px;
   text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  box-shadow: 0 25px 55px rgba(0,0,0,0.25);
 }
 
 .auth-title {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .auth-form {
@@ -29,8 +49,8 @@
 
 .auth-input {
   padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+  border-radius: 10px;
+  border: 1px solid #d8e2ff;
   font-size: 14px;
 }
 
@@ -38,7 +58,7 @@
   background: #1f3f8a;
   color: white;
   padding: 12px;
-  border-radius: 8px;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
   font-weight: 600;
@@ -57,7 +77,6 @@
 .auth-switch span a {
   color: #1f3f8a;
   font-weight: 600;
-  cursor: pointer;
   text-decoration: none;
 }
 
@@ -65,18 +84,26 @@
   text-decoration: underline;
 }
 
+
+/* =========================
+   LANDING BACKGROUND
+========================= */
+
 .landing-wrapper {
   min-height: 100vh;
   background: linear-gradient(135deg, #2f6ecb, #1f3f8a);
-  display: flex;
-  flex-direction: column;
 }
+
+
+/* =========================
+   NAVBAR
+========================= */
 
 .landing-navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 80px;
+  padding: 28px 80px;
   color: white;
 }
 
@@ -96,73 +123,88 @@
   text-decoration: underline;
 }
 
+
+/* =========================
+   HERO SECTION
+========================= */
+
 .hero-section {
-  flex: 1;
   display: flex;
-  align-items: center;
+  justify-content: center;
+  padding: 80px 60px;
+}
+
+.hero-inner {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
   justify-content: space-between;
-  padding: 80px;
+  align-items: center;
+  gap: 60px;
 }
 
 .hero-content {
-  max-width: 45%;
+  max-width: 520px;
 }
 
 .hero-content h1 {
-  font-size: 58px;
+  font-size: 56px;
   color: white;
-  line-height: 1.2;
+  line-height: 1.15;
   margin-bottom: 20px;
 }
 
 .hero-content p {
   color: #dce8ff;
   margin: 20px 0 40px;
-  max-width: 480px;
   font-size: 16px;
+  line-height: 1.6;
 }
 
 .hero-button {
-  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
   color: white;
   padding: 16px 42px;
-  border-radius: 12px;
+  border-radius: 14px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 16px;
-  display: inline-block;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
   transition: 0.3s ease;
 }
 
 .hero-button:hover {
   transform: translateY(-4px);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.3);
 }
 
+
+/* =========================
+   DASHBOARD PREVIEW
+========================= */
+
 .dashboard-preview {
-  background: white;
-  padding: 28px;
-  border-radius: 22px;
-  width: 440px;
-  box-shadow: 0 35px 60px rgba(0,0,0,0.2);
+  background: #ffffff;
+  border-radius: 26px;
+  padding: 26px;
+  width: 460px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.25);
 }
 
 .dashboard-preview h3 {
-  margin-bottom: 15px;
   font-size: 18px;
+  margin-bottom: 14px;
 }
 
 .stats-row {
   display: flex;
-  gap: 15px;
-  margin-bottom: 25px;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 20px;
 }
 
 .stat-box {
-  background: #eef3ff;
-  padding: 12px 18px;
-  border-radius: 14px;
+  background: #f0f5ff;
+  border-radius: 16px;
+  padding: 14px 16px;
   text-align: center;
   font-weight: 600;
   flex: 1;
@@ -175,11 +217,12 @@
 }
 
 .app-row {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1.5fr 2fr auto;
   align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #e6ecff;
+  padding: 12px 0;
+  border-bottom: 1px solid #e6eeff;
+  font-size: 14px;
 }
 
 .app-row strong {
@@ -189,7 +232,7 @@
 .tag {
   padding: 6px 14px;
   border-radius: 999px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -206,4 +249,59 @@
 .tag.offer {
   background: #dcfce7;
   color: #166534;
+}
+
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  .landing-navbar {
+    padding: 20px;
+  }
+
+  .hero-section {
+    padding: 40px 20px;
+  }
+
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 34px;
+  }
+
+  .hero-content p {
+    font-size: 15px;
+  }
+
+  .dashboard-preview {
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  .stats-row {
+    flex-direction: column;
+  }
+
+  .app-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .logo {
+    font-size: 22px;
+  }
+
+  .nav-actions a {
+    margin-left: 15px;
+  }
+
+  .auth-card {
+    width: 90%;
+  }
 }
