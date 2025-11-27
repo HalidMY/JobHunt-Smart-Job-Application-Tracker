@@ -1,6 +1,6 @@
 import { useState } from "react";
 import '../style/global.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Register() {
     const [formData, setFormData] = useState({
@@ -10,6 +10,8 @@ export default function Register() {
         confirmPassword: ""
     });
 
+    const navigate = useNavigate();
+
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -17,12 +19,30 @@ export default function Register() {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (formData.password !== formData.confirmPassword) {
             alert("Passwords do not match!");
             return;
+        }
+
+        const res = await fetch("http://localhost:5000/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+            username: formData.username,
+            email: formData.email,
+            password: formData.password,
+            confirmPassword: formData.confirmPassword
+            })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+            navigate("/login");
+        } else {
+            alert(data.error);
         }
     }
 

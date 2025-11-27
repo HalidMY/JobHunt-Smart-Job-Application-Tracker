@@ -1,12 +1,14 @@
 import { useState } from "react";
 import '../style/global.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
     const [formData, setFormData] = useState({
         email: "",
         password: ""
     });
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({
@@ -15,8 +17,24 @@ export default function Login() {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const res = await fetch("http://localhost:5000/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                email: formData.email,
+                password: formData.password
+            })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+            navigate("/dashboard"); 
+        } else {
+            alert(data.error);
+        }
     }
 
     return (
