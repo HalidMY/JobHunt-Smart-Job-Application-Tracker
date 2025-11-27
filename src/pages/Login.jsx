@@ -43,8 +43,8 @@ export default function Login() {
                 <form onSubmit={handleSubmit} className="auth-form">
                     <h2 className="auth-title">Login to Your Account</h2>
 
-                    <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required className="auth-input" />
-                    <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required className="auth-input" />
+                    <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required autoComplete="off" className="auth-input" />
+                    <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required autoComplete="current-password" className="auth-input" />
 
                     <button type="submit" className="auth-button">Login</button>
                 </form>

@@ -1,9 +1,16 @@
 import '../../style/global.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdDashboard, MdLogout } from "react-icons/md";
 import { FaBriefcase, FaUser } from "react-icons/fa";
 
 export default function Sidebar() {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/');
+    }
+
     return (
         <aside className="dashboard-sidebar">
             <div className="sidebar-logo">JobHunt</div>
@@ -20,10 +27,10 @@ export default function Sidebar() {
                     <FaUser className="nav-icon" />
                     Profile
                 </Link>
-                <Link to="/logout">
+                <button type="button" onClick={handleLogout} className="sidebar-logout-btn">
                     <MdLogout className="nav-icon" />
                     Logout
-                </Link>
+                </button>
             </nav>
         </aside>
     );
