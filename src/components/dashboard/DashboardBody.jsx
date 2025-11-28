@@ -3,16 +3,18 @@ import { IoIosAddCircle } from "react-icons/io";
 import { BsFillChatSquareDotsFill } from "react-icons/bs";
 import { MdLocalOffer } from "react-icons/md";
 import { BsFillClipboard2CheckFill } from "react-icons/bs";
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import AddApplicationModal from '../modals/AddApplicationModal';
+
 
 export default function DashboardBody() {
+    const [showModal, setShowModal] = useState(false);
 
     return (
         <main className="dashboard-body">
             <h1>Welcome to your Dashboard!</h1>
-            <Link to="/applications/new" className="floating-add-btn">
-                <IoIosAddCircle />
-            </Link>
+            <button className="floating-add-btn" onClick={() => setShowModal(true)}><IoIosAddCircle /></button>
+            {showModal && (<AddApplicationModal onClose={() => setShowModal(false)} />)}
 
             <div className="card-body">
                 <div className="card">

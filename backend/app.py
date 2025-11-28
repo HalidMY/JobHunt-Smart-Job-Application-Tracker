@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager, create_access_token
 from flask_cors import CORS
 from flask_jwt_extended import jwt_required, get_jwt_identity
+from datetime import datetime
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.db"
@@ -18,6 +19,19 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
+
+class Application(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    job_title = db.Column(db.String(120), nullable=False)
+    company = db.Column(db.String(120), nullable=False)
+    job_url = db.Column(db.String(250), nullable=True)
+
+    date_applied = db.Column(db.String(50), nullable=False)
+    status = db.Column(db.String(50), nullable=False)
+    notes = db.Column(db.Text, nullable=True)
+
 
 with app.app_context():
     db.create_all()
@@ -75,6 +89,45 @@ def profile():
 
     db.session.commit()
     return jsonify(message="Profile updated successfully"), 200
+
+from datetime import datetime
+
+@app.route("/applications", methods=["POST", "GET"])
+@jwt_required()
+def applications():
+    email = get_jwt_identity()
+    user = User.query.filter_by(email=email).first()
+
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    if request.method == "POST":
+        data = request.get_json()
+
+        required_fields = ["jobTitle", "companyName", "applicationDate", "status"]
+        for field in required_fields:
+            if not data.get(field):
+                return jsonify({"error": f"{field} is required"}), 400
+
+        valid_statuses = ["Applied", "Interview", "Offer", "Rejected", "Wishlist"]
+        if data["status"] not in valid_statuses:
+            return jsonify({"error": "Invalid status"}), 400
+
+        new_application = Application(
+            user_id=user.id,
+            job_title=data["jobTitle"],
+            company=data["companyName"],
+            job_url=data.get("jobUrl", ""),
+            date_applied=datetime.strptime(data["applicationDate"], "%Y-%m-%d").date(),
+            status=data["status"],
+            notes=data.get("notes", "")
+        )
+
+        db.session.add(new_application)
+        db.session.commit()
+
+        return jsonify({"message": "Application added successfully"}), 201
+
 
 if __name__ == "__main__":
     app.run(debug=True)

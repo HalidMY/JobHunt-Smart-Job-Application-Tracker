@@ -358,18 +358,17 @@ body {
 
 .floating-add-btn {
   position: absolute;
-  top: 40px;
-  right: 40px;
+  top: 50px;
+  right: 50px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border: none;
+  border-radius: 50%;
   width: 70px;
   height: 70px;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-  transition: 0.3s ease;
+  cursor: pointer;
 }
 
 .floating-add-btn svg {
@@ -378,7 +377,7 @@ body {
 }
 
 .floating-add-btn:hover {
-  transform: scale(1.05) rotate(8deg);
+  transform: scale(1.05) rotate(10deg);
 }
 
 .card {
