@@ -90,7 +90,6 @@ def profile():
     db.session.commit()
     return jsonify(message="Profile updated successfully"), 200
 
-from datetime import datetime
 
 @app.route("/applications", methods=["POST", "GET"])
 @jwt_required()
@@ -127,6 +126,21 @@ def applications():
         db.session.commit()
 
         return jsonify({"message": "Application added successfully"}), 201
+
+    apps = Application.query.filter_by(user_id=user.id).all()
+    result = [
+        {
+            "id": app.id,
+            "title": app.job_title,
+            "company": app.company,
+            "status": app.status,
+            "date_applied": app.date_applied.isoformat() if isinstance(app.date_applied, datetime) else str(app.date_applied),
+            "job_url": app.job_url,
+            "notes": app.notes,
+        }
+        for app in apps
+    ]
+    return jsonify(result), 200
 
 
 if __name__ == "__main__":

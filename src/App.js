@@ -5,6 +5,7 @@ import Login from './pages/Login.jsx';
 import HomePage from './pages/HomePage.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Profile from './pages/Profile.jsx';
+import Applications from './pages/Applications.jsx';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/applications" element={<Applications />} />
         </Routes>
       </Router>
     </div>
