@@ -142,6 +142,25 @@ def applications():
     ]
     return jsonify(result), 200
 
+@app.route("/applications/<int:app_id>", methods=["PUT"])
+@jwt_required()
+def update_application(app_id):
+    email = get_jwt_identity()
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    app_obj = Application.query.filter_by(id=app_id, user_id=user.id).first()
+    if not app_obj:
+        return jsonify({"error": "Application not found"}), 404
+
+    data = request.get_json() or {}
+    if "status" in data and data["status"]:
+        app_obj.status = data["status"]
+
+    db.session.commit()
+    return jsonify({"message": "Application updated"}), 200
+
 
 if __name__ == "__main__":
     app.run(debug=True)
