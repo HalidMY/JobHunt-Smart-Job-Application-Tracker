@@ -3,12 +3,40 @@ import { IoIosAddCircle } from "react-icons/io";
 import { BsFillChatSquareDotsFill } from "react-icons/bs";
 import { MdLocalOffer } from "react-icons/md";
 import { BsFillClipboard2CheckFill } from "react-icons/bs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddApplicationModal from '../modals/AddApplicationModal';
 
 
 export default function DashboardBody() {
     const [showModal, setShowModal] = useState(false);
+    const [applications, setApplications] = useState([]);
+
+    useEffect (() => {
+        const fetchData = async () => {
+            const token = localStorage.getItem('token');
+            
+            try {
+                const res = await fetch("http://localhost:5000/applications", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    }
+                });
+
+                const data = await res.json();
+                setApplications(data);
+            }catch (err) {
+                console.error(err);
+            }
+        };
+        fetchData();
+    },[]);
+
+    const getCountByStatus = (status) => {
+        if (!Array.isArray(applications)) return 0;
+        return applications.filter(app => app.status === status).length;
+    };
 
     return (
         <main className="dashboard-body">
@@ -23,7 +51,7 @@ export default function DashboardBody() {
                     </div>
                     <div className="card-info">
                         <h3>Applied</h3>
-                        <span>24</span>
+                        <span>{getCountByStatus("Applied")}</span>
                     </div>
                 </div>
 
@@ -33,7 +61,7 @@ export default function DashboardBody() {
                     </div>
                     <div className="card-info">
                         <h3>Interview</h3>
-                        <span>10</span>
+                        <span>{getCountByStatus("Interview")}</span>
                     </div>
                 </div>
 
@@ -43,7 +71,7 @@ export default function DashboardBody() {
                     </div>
                     <div className="card-info">
                         <h3>Offer</h3>
-                        <span>5</span>
+                        <span>{getCountByStatus("Offer")}</span>
                     </div>
                 </div>
             </div>
