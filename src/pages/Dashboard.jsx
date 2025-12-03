@@ -1,14 +1,10 @@
-//import { useState } from "react";
-import '../style/global.css';
-import Sidebar from '../components/dashboard/Sidebar.jsx';
-import DashboardBody from '../components/dashboard/DashboardBody.jsx';
+import PageWrapper from "../components/layout/PageWrapper";
+import DashboardBody from "../components/dashboard/DashboardBody";
 
 export default function Dashboard() {
-
-    return (
-        <div className="dashboard-page">
-            <Sidebar />
-            <DashboardBody />
-        </div>
-    );    
+  return (
+    <PageWrapper>
+      <DashboardBody />
+    </PageWrapper>
+  );
 }

@@ -1,27 +1,26 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './style/global.css';
-import Register from './pages/Register.jsx';
-import Login from './pages/Login.jsx';
-import HomePage from './pages/HomePage.jsx';
-import Dashboard from './pages/Dashboard.jsx';
-import Profile from './pages/Profile.jsx';
-import Applications from './pages/Applications.jsx';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./style/global.css";
+
+import HomePage from "./pages/HomePage";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
+import Applications from "./pages/Applications";
 
 function App() {
-  return (
-    <div>
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/applications" element={<Applications />} />
-        </Routes>
-      </Router>
-    </div>
-  );
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/applications" element={<Applications />} />
+                <Route path="/profile" element={<Profile />} />
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;

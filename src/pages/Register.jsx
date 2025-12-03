@@ -1,28 +1,21 @@
 import { useState } from "react";
-import '../style/global.css';
+import "../style/global.css";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Register() {
-    const [formData, setFormData] = useState({
+    const [form, setForm] = useState({
         username: "",
         email: "",
         password: "",
-        confirmPassword: ""
+        confirmPassword: "",
     });
 
     const navigate = useNavigate();
 
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        })
-    }
-
-    const handleSubmit = async (e) => {
+    const submit = async (e) => {
         e.preventDefault();
 
-        if (formData.password !== formData.confirmPassword) {
+        if (form.password !== form.confirmPassword) {
             alert("Passwords do not match!");
             return;
         }
@@ -30,38 +23,42 @@ export default function Register() {
         const res = await fetch("http://localhost:5000/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-            username: formData.username,
-            email: formData.email,
-            password: formData.password,
-            confirmPassword: formData.confirmPassword
-            })
+            body: JSON.stringify(form),
         });
 
-        const data = await res.json();
-        if (res.ok) {
-            navigate("/login");
-        } else {
-            alert(data.error);
-        }
-    }
+        if (res.ok) navigate("/login");
+        else alert("Unable to register");
+    };
 
     return (
         <div className="auth-container">
             <div className="auth-card">
-                <form onSubmit={handleSubmit} className="auth-form">
-                <h2 className="auth-title">Register Account</h2>
+                <form onSubmit={submit} className="auth-form">
+                    <h2 className="auth-title">Register Account</h2>
 
-                <input type="text" name="username" placeholder="Username" value={formData.username} onChange={handleChange} required autoComplete="off" className="auth-input" />
-                <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required autoComplete="off" className="auth-input" />
-                <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required autoComplete="new-password" className="auth-input" />
-                <input type="password" name="confirmPassword" placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleChange} required className="auth-input" />
+                    <input className="auth-input" placeholder="Username" required
+                        onChange={(e) => setForm({ ...form, username: e.target.value })}
+                    />
 
-                <button type="submit" className="auth-button">Register</button>
-            </form>
+                    <input className="auth-input" type="email" placeholder="Email" required
+                        onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    />
 
-            <p className="auth-switch">Already have an account? <span><Link to="/login">Login</Link></span></p>
+                    <input className="auth-input" type="password" placeholder="Password" required
+                        onChange={(e) => setForm({ ...form, password: e.target.value })}
+                    />
+
+                    <input className="auth-input" type="password" placeholder="Confirm Password" required
+                        onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
+                    />
+
+                    <button className="auth-button">Register</button>
+                </form>
+
+                <p className="auth-switch">
+                    Already have an account? <Link to="/login">Login</Link>
+                </p>
             </div>
         </div>
-    )
+    );
 }
