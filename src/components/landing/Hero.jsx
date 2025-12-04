@@ -2,30 +2,39 @@ import heroTable from "../../assets/hero-mockup.png";
 
 export default function Hero() {
     return (
-        <section className="hero-section">
-            <div className="hero-left">
-                <p className="hero-label">Your Personal Job Organizer</p>
+        <section className="hero">
+            <div className="hero-inner">
 
-                <h1 className="hero-heading">
-                    Track Your Job <br /> Applications Effortlessly
-                </h1>
+                <div className="hero-left">
+                    <p className="hero-label">Your Personal Job Organizer</p>
 
-                <p className="hero-desc">
-                    A simple and powerful tool to save jobs, track your progress,
-                    and stay organized throughout your job search.
-                </p>
+                    <h1 className="hero-heading">
+                        Track Your Job <br />
+                        Applications Effortlessly
+                    </h1>
 
-                <ul className="hero-list">
-                    <li>🗂️ Keep all your job applications organized</li>
-                    <li>📊 Track progress across all stages</li>
-                    <li>📌 Stay on top of every application stage</li>
-                </ul>
+                    <p className="hero-desc">
+                        A simple and powerful tool to save jobs, track your progress,
+                        and stay organized throughout your job search.
+                    </p>
 
-                <a href="/register" className="hero-btn">Get Started Free</a>
-            </div>
+                    <ul className="hero-list">
+                        <li>🗂️ Keep all your job applications organized</li>
+                        <li>📊 Track progress across all stages</li>
+                        <li>📌 Stay on top of every application stage</li>
+                    </ul>
 
-            <div className="hero-right">
-                <img src={heroTable} alt="Preview" className="hero-mockup" />
+                    <a href="/register" className="hero-btn">
+                        Get Started Free
+                    </a>
+                </div>
+
+                <div className="hero-right">
+                    <div className="hero-mockup-wrapper">
+                        <img src={heroTable} alt="Dashboard Preview" />
+                    </div>
+                </div>
+
             </div>
         </section>
     );
