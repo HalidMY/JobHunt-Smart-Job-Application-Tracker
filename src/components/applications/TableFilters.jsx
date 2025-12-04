@@ -1,4 +1,4 @@
-export default function TableFilters({ stats }) {
+export default function TableFilters({ stats, onAddNew }) {
     return (
         <>
             <div className="status-cards">
@@ -20,7 +20,7 @@ export default function TableFilters({ stats }) {
 
                 <button className="btn-columns">Columns</button>
                 <button className="btn-menu">Menu</button>
-                <button className="btn-add">+ Add Job</button>
+                <button className="btn-add" onClick={onAddNew}>+ Add Job</button>
             </div>
         </>
     );

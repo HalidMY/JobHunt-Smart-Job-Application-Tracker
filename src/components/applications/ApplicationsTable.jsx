@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import TableFilters from "./TableFilters";
 import JobRow from "./JobRow";
 
-export default function ApplicationsTable({ setSelectedJob }) {
+export default function ApplicationsTable({ setSelectedJob, onOpenModal }) {
     const [jobs, setJobs] = useState([]);
 
     useEffect(() => {
@@ -29,7 +29,7 @@ export default function ApplicationsTable({ setSelectedJob }) {
 
     return (
         <>
-            <TableFilters stats={stats} />
+            <TableFilters stats={stats} onAddNew={onOpenModal} />
 
             <table className="applications-table">
                 <thead>

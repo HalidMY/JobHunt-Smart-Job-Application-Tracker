@@ -1,5 +1,5 @@
 import { useState } from "react";
-import '../../style/modal.css';
+import '../../style/global.css';
 
 export default function AddApplicationModal({ onClose }) {
 
