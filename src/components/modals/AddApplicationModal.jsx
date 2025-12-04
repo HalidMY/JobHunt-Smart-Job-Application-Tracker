@@ -12,6 +12,8 @@ export default function AddApplicationModal({ onClose }) {
     status: "Applied"
   });
 
+  const today = new Date().toISOString().split("T")[0];
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -102,6 +104,7 @@ export default function AddApplicationModal({ onClose }) {
               value={formData.applicationDate}
               onChange={handleChange}
               required
+              max={today}
             />
           </div>
 

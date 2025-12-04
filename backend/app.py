@@ -4,7 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager, create_access_token
 from flask_cors import CORS
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from datetime import datetime
+from datetime import datetime, date
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.db"
@@ -109,6 +109,14 @@ def applications():
         for field in required_fields:
             if not data.get(field):
                 return jsonify({"error": f"{field} is required"}), 400
+            
+        try:
+            applied_date = datetime.strptime(data["applicationDate"], "%Y-%m-%d").date()
+        except ValueError:
+            return jsonify({"error": "Invalid date format"}), 400    
+        
+        if applied_date > date.today():
+            return jsonify({"error": "Application date cannot be in the future"}), 400
 
         new_application = Application(
             user_id=user.id,
