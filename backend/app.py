@@ -28,6 +28,8 @@ class Application(db.Model):
     company = db.Column(db.String(120), nullable=False)
     job_url = db.Column(db.String(250), nullable=True)
 
+    location = db.Column(db.String(120), nullable=True)
+
     date_applied = db.Column(db.String(50), nullable=False)
     status = db.Column(db.String(50), nullable=False)
     notes = db.Column(db.Text, nullable=True)
@@ -103,22 +105,19 @@ def applications():
     if request.method == "POST":
         data = request.get_json()
 
-        required_fields = ["jobTitle", "companyName", "applicationDate", "status"]
+        required_fields = ["jobTitle", "companyName", "applicationDate"]
         for field in required_fields:
             if not data.get(field):
                 return jsonify({"error": f"{field} is required"}), 400
-
-        valid_statuses = ["Applied", "Interview", "Offer", "Rejected", "Wishlist"]
-        if data["status"] not in valid_statuses:
-            return jsonify({"error": "Invalid status"}), 400
 
         new_application = Application(
             user_id=user.id,
             job_title=data["jobTitle"],
             company=data["companyName"],
             job_url=data.get("jobUrl", ""),
+            location=data.get("location", ""),  # NEW FIELD
             date_applied=datetime.strptime(data["applicationDate"], "%Y-%m-%d").date(),
-            status=data["status"],
+            status="Applied",                   # DEFAULT STATUS
             notes=data.get("notes", "")
         )
 
@@ -134,7 +133,9 @@ def applications():
             "title": app.job_title,
             "company": app.company,
             "status": app.status,
-            "date_applied": app.date_applied.isoformat() if isinstance(app.date_applied, datetime) else str(app.date_applied),
+            "location": app.location,   # ADDED HERE
+            "date_applied": app.date_applied.isoformat()
+                if isinstance(app.date_applied, datetime) else str(app.date_applied),
             "job_url": app.job_url,
             "notes": app.notes,
         }

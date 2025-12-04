@@ -3,8 +3,6 @@ import '../../style/global.css';
 
 export default function AddApplicationModal({ onClose }) {
 
-  const [open, setOpen] = useState(false);
-
   const [formData, setFormData] = useState({
     jobTitle: "",
     jobUrl: "",
@@ -40,13 +38,11 @@ export default function AddApplicationModal({ onClose }) {
     }
   };
 
-  const statuses = ["Applied", "Interview", "Offer", "Rejected"];
-
   return (
     <div className="modal-overlay">
       <div className="modal-container">
         <div className="modal-header">
-          <h2>Add Application</h2>
+          <h2>Add a New Application</h2>
         </div>
 
         <form onSubmit={handleSubmit} className="modal-form">
@@ -58,6 +54,7 @@ export default function AddApplicationModal({ onClose }) {
               name="jobTitle"
               value={formData.jobTitle}
               onChange={handleChange}
+              placeholder="Job Title"
               required
             />
           </div>
@@ -69,12 +66,13 @@ export default function AddApplicationModal({ onClose }) {
               name="companyName"
               value={formData.companyName}
               onChange={handleChange}
+              placeholder="Company Name"
               required
             />
           </div>
 
           <div className="form-group">
-            <label>Job URL *</label>
+            <label>Job URL from Original Post *</label>
             <input
               type="url"
               name="jobUrl"
@@ -86,6 +84,17 @@ export default function AddApplicationModal({ onClose }) {
           </div>
 
           <div className="form-group">
+            <label>Location</label>
+            <input 
+              type="text"
+              name="location"
+              value={formData.location}
+              onChange={handleChange}
+              placeholder="Location"
+              />
+          </div>
+
+          <div className="form-group">
             <label>Application Date *</label>
             <input
               type="date"
@@ -94,35 +103,6 @@ export default function AddApplicationModal({ onClose }) {
               onChange={handleChange}
               required
             />
-          </div>
-
-          <div className="form-group">
-            <label>Status</label>
-
-            <div 
-              className="status-select" 
-              onClick={() => setOpen(!open)}
-            >
-              {formData.status}
-              <span className="arrow">▾</span>
-            </div>
-
-            {open && (
-              <div className="status-options">
-                {statuses.map(status => (
-                  <div
-                    key={status}
-                    className="status-option"
-                    onClick={() => {
-                      setFormData(prev => ({ ...prev, status }));
-                      setOpen(false);
-                    }}
-                  >
-                    {status}
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
 
           <div className="form-group">

@@ -38,6 +38,7 @@ export default function ApplicationsTable({ setSelectedJob, onOpenModal }) {
                         <th>Job Position</th>
                         <th>Company</th>
                         <th>Status</th>
+                        <th>Location</th>
                         <th>Date Applied</th>
                     </tr>
                 </thead>
