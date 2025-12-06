@@ -52,18 +52,25 @@ Basic CRUD operations for job data
 
 🖼️ Demo Screenshots
 🏠 Landing / Home Page
+<img width="1910" height="907" alt="home_page" src="https://github.com/user-attachments/assets/f8418a4e-aa49-4f72-bfcd-ff53d7342a1a" />
 
 🔐 Login Page
+<img width="1914" height="912" alt="login" src="https://github.com/user-attachments/assets/a5423b73-829b-4e0a-97fa-2272ecb046d4" />
 
 📝 Register Page
+<img width="1909" height="905" alt="register" src="https://github.com/user-attachments/assets/c30264b4-4fe4-4a92-a05e-50b1c28341e8" />
 
 📊 Dashboard Overview
+<img width="1915" height="909" alt="dashboard" src="https://github.com/user-attachments/assets/f266dc68-e2f8-4156-bdba-d32748a703d5" />
 
 📁 Applications List
+<img width="1909" height="908" alt="applications" src="https://github.com/user-attachments/assets/ffa3fcaa-69d8-4f21-b563-972fcc2e3f2c" />
 
 🔎 Job Detail Slide Panel
+<img width="1904" height="904" alt="job_detail_panel" src="https://github.com/user-attachments/assets/7a144f93-19eb-4c07-8ac2-da854abfbfe5" />
 
 👤 Profile Page
+<img width="1916" height="908" alt="profile" src="https://github.com/user-attachments/assets/7a882032-a747-45e4-831f-2d1ccad9484c" />
 
 🛠️ Tech Stack
 Front-End (Primary Focus)
