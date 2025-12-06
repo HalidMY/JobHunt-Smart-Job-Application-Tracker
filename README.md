@@ -1,132 +1,111 @@
-🎯 Job Application Tracker
+# 📋 Job Application Tracker
 
-A modern, responsive Front-End Web Application designed to help users track and manage their job applications with a clean, intuitive interface.
-The project showcases front-end development, interactive UI components, dashboard analytics, and a polished SaaS-style design system.
+A modern and responsive **Job Application Tracking Web Application** that helps users organise, track, and manage their job search efficiently with a clean, dashboard-style interface and intuitive workflows.
 
-🚀 Features
-🖥️ Front-End Highlights
+------------------------------------------------------------------------
 
-Fully responsive layout with modern UI and smooth user experience
+## 🚀 Features
 
-Clean sidebar navigation (Dashboard · Applications · Profile)
+- User authentication (Register / Login / Logout)  
+- Add, edit, update and manage job applications  
+- Track application stages (Applied → Interviewing → Negotiating → Accepted)  
+- Interactive dashboard with charts, status breakdown, and activity timeline  
+- Filter, group, and sort applications easily  
+- Slide-in **Job Detail Panel** with notes  
+- Weekly goals and upcoming tasks widget  
+- Responsive and modern UI design  
+- Custom reusable UI components  
+- Secure password hashing  
 
-Dynamic application table with:
+------------------------------------------------------------------------
 
-Filtering
+## 🖥️ Demo Screenshots
 
-Grouping
+### 🔐 Login Page  
+<img width="1914" height="912" alt="login" src="https://github.com/user-attachments/assets/96d88917-7bdd-4680-b050-01ee49588ae6" />
 
-Sorting
+### 📝 Register Page  
+<img width="1909" height="905" alt="register" src="https://github.com/user-attachments/assets/bbc11431-0b6c-44a2-9bf9-b649464d43cd" />
 
-Status counters
+### 🏠 Home / Landing Page  
+<img width="1910" height="907" alt="home_page" src="https://github.com/user-attachments/assets/650b38da-b7f5-4db4-afa1-92f87c98666b" />
 
-Interactive dashboard with:
+### 📊 Dashboard Overview  
+<img width="1915" height="909" alt="dashboard" src="https://github.com/user-attachments/assets/9b65af41-984d-4814-aaa2-593d931f3be7" />
 
-Applications over time chart
+### 📁 Applications List  
+<img width="1909" height="908" alt="applications" src="https://github.com/user-attachments/assets/3e1fc7f4-ab5a-479d-a3f6-19f50d8d7e40" />
 
-Status breakdown
+### 🔎 Job Detail Panel  
+<img width="1904" height="904" alt="job_detail_panel" src="https://github.com/user-attachments/assets/82ff7f83-7826-4855-ad64-a7ff59e55edf" />
 
-Recent activity feed
+### 👤 Profile Page  
+<img width="1916" height="908" alt="profile" src="https://github.com/user-attachments/assets/26497f4f-f952-4e12-bf36-2b73ec11d1bc" />
 
-Weekly goals widget
+------------------------------------------------------------------------
 
-Upcoming reminders
+## 🛠️ Tech Stack
 
-Slide-in Job Detail Panel with stage progression (Applied → Interviewing → Negotiating → Accepted)
+| Layer       | Technology |
+|-------------|------------|
+| Frontend    | HTML, CSS, Bootstrap, JavaScript |
+| Backend     | Flask (Python) |
+| Database    | SQLite |
+| ORM         | SQLAlchemy |
+| UI Design   | Custom Modern Responsive Theme |
 
-Profile page with editable user info
+------------------------------------------------------------------------
 
-Clean and accessible form components (login, register, edit forms)
+## ⚙️ How To Run Locally
 
-Custom reusable UI components (badges, cards, progress bars, buttons)
+### 1. Clone the repository
 
-🛠 Under-the-hood
-
-While the focus of this project is the front end, it includes a lightweight Flask backend for:
-
-Authentication (Register / Login / Logout)
-
-User session management
-
-Basic CRUD operations for job data
-
-🖼️ Demo Screenshots
-🏠 Landing / Home Page
-<img width="1910" height="907" alt="home_page" src="https://github.com/user-attachments/assets/f8418a4e-aa49-4f72-bfcd-ff53d7342a1a" />
-
-🔐 Login Page
-<img width="1914" height="912" alt="login" src="https://github.com/user-attachments/assets/a5423b73-829b-4e0a-97fa-2272ecb046d4" />
-
-📝 Register Page
-<img width="1909" height="905" alt="register" src="https://github.com/user-attachments/assets/c30264b4-4fe4-4a92-a05e-50b1c28341e8" />
-
-📊 Dashboard Overview
-<img width="1915" height="909" alt="dashboard" src="https://github.com/user-attachments/assets/f266dc68-e2f8-4156-bdba-d32748a703d5" />
-
-📁 Applications List
-<img width="1909" height="908" alt="applications" src="https://github.com/user-attachments/assets/ffa3fcaa-69d8-4f21-b563-972fcc2e3f2c" />
-
-🔎 Job Detail Slide Panel
-<img width="1904" height="904" alt="job_detail_panel" src="https://github.com/user-attachments/assets/7a144f93-19eb-4c07-8ac2-da854abfbfe5" />
-
-👤 Profile Page
-<img width="1916" height="908" alt="profile" src="https://github.com/user-attachments/assets/7a882032-a747-45e4-831f-2d1ccad9484c" />
-
-🛠️ Tech Stack
-Front-End (Primary Focus)
-
-HTML5
-
-CSS3
-
-Bootstrap 5
-
-JavaScript (ES6)
-
-Custom responsive UI design
-
-Backend (Supporting)
-
-Flask (Python)
-
-SQLite
-
-SQLAlchemy
-
-Werkzeug (for secure password hashing)
-
-⚙️ How to Run Locally
-1. Clone the repository
+```bash
 git clone https://github.com/HalidMY/JobHunt.git
 cd JobHunt
+```
 
-2. Create virtual environment
+### 2. Create Virtual Environment
+
+```bash
 python -m venv venv
+```
 
+Activate it:
 
-Activate:
+**Windows**
 
-Windows
-
+```bash
 venv\Scripts\activate
+```
 
+**Mac / Linux**
 
-Mac/Linux
-
+```bash
 source venv/bin/activate
+```
 
-3. Install dependencies
+### 3. Install dependencies
+
+```bash
 pip install flask flask_sqlalchemy werkzeug
+```
 
-4. Run the application
+### 4. Run the application
+
+```bash
 python app.py
+```
 
-
-Open in browser:
+Open your browser:
 
 http://127.0.0.1:5000/
 
-📂 Project Structure
+------------------------------------------------------------------------
+
+## 📂 Project Structure
+
+```
 JOBHUNT/
 │
 ├── instance/
@@ -163,45 +142,44 @@ JOBHUNT/
 ├── utils/
 │   └── helpers.py
 │
+├── .gitignore
 ├── app.py
 └── README.md
+```
 
-🧭 App Workflow
+------------------------------------------------------------------------
 
-User registers or logs in
+## 🧭 Usage Flow
 
-Dashboard shows real-time analytics
+1. Register or Login  
+2. Add job applications with company, role, status & notes  
+3. Track application progress through the pipeline  
+4. View analytics from the Dashboard  
+5. Open the slide panel to see job details and notes  
+6. Manage profile settings anytime  
 
-Users add, edit, or manage job applications
+------------------------------------------------------------------------
 
-Each job can move through stages visually
+## 🔮 Planned Improvements
 
-Detail panel shows interview notes & logs
+- Dark / Light mode toggle  
+- Advanced filtering & search  
+- Resume/CV attachments  
+- Notifications & reminders  
+- Company insights & job metadata  
+- REST API for mobile integration  
+- React or Vue front-end version  
 
-Weekly goals help track progress
+------------------------------------------------------------------------
 
-Profile page allows personal info updates
+## 👨‍💻 Author
 
-🔮 Planned Improvements
-
-Light/Dark mode toggle
-
-Search & advanced filtering
-
-Resume/CV upload for each application
-
-Notifications or reminder system
-
-Company insights panel
-
-REST API for mobile app integration
-
-React or Vue front-end version
-
-👨‍💻 Author
-
-Halid Mahmutyazicioglu
+**Halid Mahmutyazicioglu**  
 GitHub: https://github.com/HalidMY
 
-Project Repository:
+Project Repository:  
 👉 https://github.com/HalidMY/JobHunt
+
+------------------------------------------------------------------------
+
+⭐ If you found this project helpful, please consider starring the repository!
