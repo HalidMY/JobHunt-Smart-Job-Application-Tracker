@@ -1,10 +1,9 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-from flask_jwt_extended import JWTManager, create_access_token
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from flask_cors import CORS
-from flask_jwt_extended import jwt_required, get_jwt_identity
-from datetime import datetime, date
+from datetime import datetime
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.db"
@@ -22,7 +21,7 @@ class User(db.Model):
 
 class Application(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
 
     job_title = db.Column(db.String(120), nullable=False)
     company = db.Column(db.String(120), nullable=False)
@@ -42,9 +41,9 @@ with app.app_context():
 def register():
     data = request.get_json()
 
-    if data['password'] != data['confirmPassword']:
+    if data["password"] != data["confirmPassword"]:
         return jsonify({"error": "Passwords do not match!"}), 400
-    
+
     hashed_password = bcrypt.generate_password_hash(data["password"]).decode("utf-8")
     new_user = User(username=data["username"], email=data["email"], password=hashed_password)
 
@@ -61,14 +60,13 @@ def login():
     if user and bcrypt.check_password_hash(user.password, data["password"]):
         access_token = create_access_token(identity=user.email)
         return jsonify(access_token=access_token), 200
-    
+
     return jsonify(message="Invalid credentials"), 401
 
 @app.route("/profile", methods=["GET", "PUT"])
 @jwt_required()
 def profile():
     email = get_jwt_identity()
-
     user = User.query.filter_by(email=email).first()
     if not user:
         return jsonify(message="User not found"), 404
@@ -85,9 +83,7 @@ def profile():
         user.email = data["email"]
 
     if "password" in data and data["password"]:
-        user.password = bcrypt.generate_password_hash(
-            data["password"]
-        ).decode("utf-8")
+        user.password = bcrypt.generate_password_hash(data["password"]).decode("utf-8")
 
     db.session.commit()
     return jsonify(message="Profile updated successfully"), 200
@@ -109,24 +105,16 @@ def applications():
         for field in required_fields:
             if not data.get(field):
                 return jsonify({"error": f"{field} is required"}), 400
-            
-        try:
-            applied_date = datetime.strptime(data["applicationDate"], "%Y-%m-%d").date()
-        except ValueError:
-            return jsonify({"error": "Invalid date format"}), 400    
-        
-        if applied_date > date.today():
-            return jsonify({"error": "Application date cannot be in the future"}), 400
 
         new_application = Application(
             user_id=user.id,
             job_title=data["jobTitle"],
             company=data["companyName"],
             job_url=data.get("jobUrl", ""),
-            location=data.get("location", ""),  # NEW FIELD
+            location=data.get("location", ""),
             date_applied=datetime.strptime(data["applicationDate"], "%Y-%m-%d").date(),
-            status="Applied",                   # DEFAULT STATUS
-            notes=data.get("notes", "")
+            status="Applied",
+            notes=data.get("notes", ""),
         )
 
         db.session.add(new_application)
@@ -141,9 +129,10 @@ def applications():
             "title": app.job_title,
             "company": app.company,
             "status": app.status,
-            "location": app.location,   # ADDED HERE
+            "location": app.location,
             "date_applied": app.date_applied.isoformat()
-                if isinstance(app.date_applied, datetime) else str(app.date_applied),
+            if isinstance(app.date_applied, datetime)
+            else str(app.date_applied),
             "job_url": app.job_url,
             "notes": app.notes,
         }
@@ -164,12 +153,47 @@ def update_application(app_id):
         return jsonify({"error": "Application not found"}), 404
 
     data = request.get_json() or {}
+
+    if "jobTitle" in data and data["jobTitle"]:
+        app_obj.job_title = data["jobTitle"]
+
+    if "companyName" in data and data["companyName"]:
+        app_obj.company = data["companyName"]
+
+    if "jobUrl" in data:
+        app_obj.job_url = data["jobUrl"] or ""
+
+    if "location" in data:
+        app_obj.location = data["location"] or ""
+
+    if "applicationDate" in data and data["applicationDate"]:
+        try:
+            app_obj.date_applied = datetime.strptime(data["applicationDate"], "%Y-%m-%d").date()
+        except ValueError:
+            return jsonify({"error": "Invalid date format"}), 400
+
+    if "notes" in data:
+        app_obj.notes = data["notes"] or ""
+
     if "status" in data and data["status"]:
         app_obj.status = data["status"]
 
     db.session.commit()
     return jsonify({"message": "Application updated"}), 200
 
+@app.route("/applications/<int:app_id>", methods=["DELETE"])
+@jwt_required()
+def delete_application(app_id):
+    email = get_jwt_identity()
+    user = User.query.filter_by(email=email).first()
+
+    app_obj = Application.query.filter_by(id=app_id, user_id=user.id).first()
+    if not app_obj:
+        return jsonify({"error": "Application not found"}), 404
+
+    db.session.delete(app_obj)
+    db.session.commit()
+    return jsonify({"message": "Application deleted"}), 200
 
 if __name__ == "__main__":
     app.run(debug=True)
