@@ -48,7 +48,7 @@ A modern and responsive **Job Application Tracking Web Application** that helps 
 
 | Layer       | Technology |
 |-------------|------------|
-| Frontend    | HTML, CSS, Bootstrap, JavaScript |
+| Frontend    | HTML, CSS, Bootstrap, JavaScript, React, React Hooks |
 | Backend     | Flask (Python) |
 | Database    | SQLite |
 | ORM         | SQLAlchemy |
