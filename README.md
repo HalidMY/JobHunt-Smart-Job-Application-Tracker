@@ -144,6 +144,7 @@ JOBHUNT/
 ├── static/
 │   ├── css/
 │   │   └── styles.css
+│   │
 │   └── js/
 │       ├── dashboard.js
 │       ├── applications.js
