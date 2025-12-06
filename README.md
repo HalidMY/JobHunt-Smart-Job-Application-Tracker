@@ -1,70 +1,199 @@
-# Getting Started with Create React App
+🎯 Job Application Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive Front-End Web Application designed to help users track and manage their job applications with a clean, intuitive interface.
+The project showcases front-end development, interactive UI components, dashboard analytics, and a polished SaaS-style design system.
 
-## Available Scripts
+🚀 Features
+🖥️ Front-End Highlights
 
-In the project directory, you can run:
+Fully responsive layout with modern UI and smooth user experience
 
-### `npm start`
+Clean sidebar navigation (Dashboard · Applications · Profile)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Dynamic application table with:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Filtering
 
-### `npm test`
+Grouping
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Sorting
 
-### `npm run build`
+Status counters
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Interactive dashboard with:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Applications over time chart
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Status breakdown
 
-### `npm run eject`
+Recent activity feed
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Weekly goals widget
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Upcoming reminders
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Slide-in Job Detail Panel with stage progression (Applied → Interviewing → Negotiating → Accepted)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Profile page with editable user info
 
-## Learn More
+Clean and accessible form components (login, register, edit forms)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Custom reusable UI components (badges, cards, progress bars, buttons)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+🛠 Under-the-hood
 
-### Code Splitting
+While the focus of this project is the front end, it includes a lightweight Flask backend for:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Authentication (Register / Login / Logout)
 
-### Analyzing the Bundle Size
+User session management
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Basic CRUD operations for job data
 
-### Making a Progressive Web App
+🖼️ Demo Screenshots
+🏠 Landing / Home Page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+🔐 Login Page
 
-### Advanced Configuration
+📝 Register Page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+📊 Dashboard Overview
 
-### Deployment
+📁 Applications List
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+🔎 Job Detail Slide Panel
 
-### `npm run build` fails to minify
+👤 Profile Page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+🛠️ Tech Stack
+Front-End (Primary Focus)
+
+HTML5
+
+CSS3
+
+Bootstrap 5
+
+JavaScript (ES6)
+
+Custom responsive UI design
+
+Backend (Supporting)
+
+Flask (Python)
+
+SQLite
+
+SQLAlchemy
+
+Werkzeug (for secure password hashing)
+
+⚙️ How to Run Locally
+1. Clone the repository
+git clone https://github.com/HalidMY/JobHunt.git
+cd JobHunt
+
+2. Create virtual environment
+python -m venv venv
+
+
+Activate:
+
+Windows
+
+venv\Scripts\activate
+
+
+Mac/Linux
+
+source venv/bin/activate
+
+3. Install dependencies
+pip install flask flask_sqlalchemy werkzeug
+
+4. Run the application
+python app.py
+
+
+Open in browser:
+
+http://127.0.0.1:5000/
+
+📂 Project Structure
+JOBHUNT/
+│
+├── instance/
+│   └── jobs.db
+│
+├── screenshots/
+│   ├── home_page.png
+│   ├── dashboard.png
+│   ├── applications.png
+│   ├── job_detail_panel.png
+│   ├── login.png
+│   ├── profile.png
+│   └── register.png
+│
+├── static/
+│   ├── css/
+│   │   └── styles.css
+│   └── js/
+│       ├── dashboard.js
+│       ├── applications.js
+│       └── main.js
+│
+├── templates/
+│   ├── layout.html
+│   ├── index.html
+│   ├── login.html
+│   ├── register.html
+│   ├── dashboard.html
+│   ├── applications.html
+│   ├── job_detail_panel.html
+│   └── profile.html
+│
+├── utils/
+│   └── helpers.py
+│
+├── app.py
+└── README.md
+
+🧭 App Workflow
+
+User registers or logs in
+
+Dashboard shows real-time analytics
+
+Users add, edit, or manage job applications
+
+Each job can move through stages visually
+
+Detail panel shows interview notes & logs
+
+Weekly goals help track progress
+
+Profile page allows personal info updates
+
+🔮 Planned Improvements
+
+Light/Dark mode toggle
+
+Search & advanced filtering
+
+Resume/CV upload for each application
+
+Notifications or reminder system
+
+Company insights panel
+
+REST API for mobile app integration
+
+React or Vue front-end version
+
+👨‍💻 Author
+
+Halid Mahmutyazicioglu
+GitHub: https://github.com/HalidMY
+
+Project Repository:
+👉 https://github.com/HalidMY/JobHunt
